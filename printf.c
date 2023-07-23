@@ -45,7 +45,7 @@ int _char(va_list vlist)
 	char x;
 	x = va_arg(vlist, int);
 	if (!x)
-		_putchar('\0');
+		x = '\0';
 	_putchar(x);
 	return (1);
 }

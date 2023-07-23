@@ -2,12 +2,11 @@
 #include <stdio.h>
 int main()
 {
-	char x = 'x';
-	char *y = "ziad";
+	char x = '\0';
 	int i, j;
 
-	i = _printf("my name is %s %% %c\n", y, x);
-	j = printf("my name is %s %% %c\n", y, x);
+	i = _printf("%c", x);
+	j = printf("%c", x);
 
 
 	printf("%d%d\n", i , j);
