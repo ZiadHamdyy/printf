@@ -6,6 +6,10 @@ int _char(va_list vlist);
 int _str(va_list vlist);
 int _per(va_list vlist);
 /**
+ * _printf - printf function.
+ * @format:string to be printed.
+ * Return:lenght of string.
+ * or 0 or -1 or 1.
  */
 int _printf(const char *format, ...)
 {
@@ -51,15 +55,26 @@ int _printf(const char *format, ...)
 	va_end(vlist);
 	return (len);
 }
+/**
+ * _char - print character.
+ * @vlist:the argument we will print.
+ * Return:1.
+ */
 int _char(va_list vlist)
 {
 	char x;
+
 	x = va_arg(vlist, int);
 	if (!x)
 		x = '\0';
 	_putchar(x);
 	return (1);
 }
+/**
+ * _str - print string.
+ * @vlist:the argument we will print.
+ * Return:lenght of the string.
+ */
 int _str(va_list vlist)
 {
 	int i;
@@ -75,8 +90,13 @@ int _str(va_list vlist)
 	}
 	return (i);
 }
+/**
+ * _per - print percentage.
+ * @vlist:the argument we will print .
+ * Return:1.
+ */
 int _per(__attribute__((unused)) va_list vlist)
 {
 	_putchar('%');
-	return(1);
+	return (1);
 }
