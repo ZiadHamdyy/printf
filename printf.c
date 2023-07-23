@@ -12,8 +12,10 @@ int _printf(const char *format, ...)
 	int i, len = 0;
 	va_list vlist;
 
-	va_start(vlist, format);
 
+	if (!format)
+		return (-1);
+	va_start(vlist, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
@@ -25,18 +27,25 @@ int _printf(const char *format, ...)
 				len += _char(vlist);
 				i++;
 			}
-			if (format[i + 1] == 's')
+			else if (format[i + 1] == 's')
 			{
 				len += _str(vlist);
 				i++;
 			}
-			if (format[i + 1] == '%')
+			else if (format[i + 1] == '%')
 			{
 				len += _per(vlist);
 				i++;
 			}
-			if (format[i + 1] == '\0')
+			else if (format[i + 1] == '\0' || format[i + 1] == ' ')
+			{
 				return (-1);
+			}
+			else
+			{
+				len += _putchar('%');
+
+			}
 		}
 	}
 	va_end(vlist);
