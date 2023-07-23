@@ -44,6 +44,8 @@ int _char(va_list vlist)
 {
 	char x;
 	x = va_arg(vlist, int);
+	if (!x)
+		_putchar('\0');
 	_putchar(x);
 	return (1);
 }
@@ -53,6 +55,9 @@ int _str(va_list vlist)
 	char *x;
 
 	x = va_arg(vlist, char *);
+	if (x == NULL)
+		x = "(null)";
+
 	for (i = 0; x[i] != '\0'; i++)
 	{
 		_putchar(x[i]);
