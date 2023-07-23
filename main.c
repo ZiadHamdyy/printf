@@ -2,11 +2,11 @@
 #include <stdio.h>
 int main()
 {
-	char x = '\0';
 	int i, j;
-
-	i = _printf("%c", x);
-	j = printf("%c", x);
+char* invalid_str = "Hello, World!";
+char* ptr_to_invalid_memory = invalid_str - 100;
+	i = _printf("%s", ptr_to_invalid_memory);
+	j = printf("%s", ptr_to_invalid_memory);
 
 
 	printf("%d%d\n", i , j);
