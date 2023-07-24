@@ -104,39 +104,3 @@ int _per(__attribute__((unused)) va_list vlist)
 	_putchar('%');
 	return (1);
 }
-int _int(va_list vlist)
-{
-	int n, nc, d, nd = 0 ,div = 1, i, len = 0;
-
-
-	n = va_arg(vlist, int);
-
-	nc = n;
-	if (nc == 0)
-	{
-		nd = 1;
-	}
-	else
-	{
-		while (nc > 0)
-		{
-			nc /= 10;
-			nd++;
-		}
-	}
-	if (n < 0)
-	{
-		len += _putchar('-');
-		n = -n;
-	}
-	for (i = 1; i < nd; ++i)
-		div *= 10;
-	while (div != 0)
-	{
-		d = n / div;
-		len += _putchar('0' + d);
-		n %= div;
-		div /= 10;
-	}
-		return (len);
-}
