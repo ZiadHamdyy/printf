@@ -2,9 +2,6 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
-int _char(va_list vlist);
-int _str(va_list vlist);
-int _per(va_list vlist);
 /**
  * _printf - printf function.
  * @format:string to be printed.
