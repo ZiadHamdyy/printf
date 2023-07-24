@@ -1,13 +1,15 @@
-#include <stdarg.h>
-#include <stdio.h>
-#include <limits.h>
-#include <stdlib.h>
 #include "main.h"
 int int_len(int x)
 {
     int counter = 0;
     if (x == 0)
         return (1);
+
+    if (x < 0)
+    {
+	    counter++;
+	    x = -x;
+    }
     while (x > 0)
     {
         counter++;
@@ -18,7 +20,7 @@ int int_len(int x)
 int _int(va_list vlist)
 {
     int x = va_arg(vlist, int);
-    int y, i = 0,len, f = 0;
+    int i = 0,len, f = 0;
     int *z;
     
     if (x == INT_MIN)
@@ -28,7 +30,7 @@ int _int(va_list vlist)
     }
     if (x == 0)
     {
-	    _putchar(x + '0');
+	    _putchar('0');
 	    return (1);
     }
     if(x < 0)
@@ -41,12 +43,11 @@ int _int(va_list vlist)
 	z = malloc(sizeof(int) * len);
     while (x != 0)
     {
-        y = x  % 10;
-        z[i] = y;
+        z[i] = x % 10;
         i++;
         x = x / 10;
     }
-    for (i = i - 1; i > -1; i--)
+    for (i = i - 1; i >= 0; i--)
      putchar(z[i] + '0');
 	free(z);
 	if (f == 1)
