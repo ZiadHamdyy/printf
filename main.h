@@ -8,4 +8,5 @@ int _printf(const char *format, ...);
 int _char(va_list vlist);
 int _str(va_list vlist);
 int _per(va_list vlist);
+int _int(va_list vlist);
 #endif
