@@ -67,19 +67,36 @@ int _int(va_list vlist)
 	else
 		return (len);
 }
+/**
+ * int_binary - convert dec to bin.
+ * @x:the number.
+ * @len:the lenght.
+ * Return:void.
+ */
 void int_binary(int x, int *len)
 {
 
-        if (x > 1)
-                int_binary(x / 2, len);
+        if (x <= 0)
+		return;
+	int_binary(x / 2, len);
         _putchar('0' + (x % 2));
 	(*len)++;
 }
+/**
+ * _binary - print bin.
+ * @vlist:va_list.
+ * Return:lenght.
+ */
 int _binary(va_list vlist)
 {
          int x, len = 0;
 
         x = va_arg(vlist, int);
+	if (x == 0 || x == 1)
+	{
+		_putchar('0' + x);
+		return (1);
+	}
 	int_binary(x, &len);
 	return (len);
 }
