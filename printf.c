@@ -44,6 +44,11 @@ int _printf(const char *format, ...)
 				len += _int(vlist);
 				i++;
 			}
+			else if (format[i + 1] == 'b')
+			{
+				len += _binary(vlist);
+				i++;
+			}
 			else
 				len += _putchar('%');
 		}

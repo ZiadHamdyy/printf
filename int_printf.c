@@ -67,3 +67,19 @@ int _int(va_list vlist)
 	else
 		return (len);
 }
+void int_binary(int x, int *len)
+{
+
+        if (x > 1)
+                int_binary(x / 2, len);
+        _putchar('0' + (x % 2));
+	(*len)++;
+}
+int _binary(va_list vlist)
+{
+         int x, len = 0;
+
+        x = va_arg(vlist, int);
+	int_binary(x, &len);
+	return (len);
+}

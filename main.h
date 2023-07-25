@@ -13,4 +13,5 @@ int _str(va_list vlist);
 int _per(va_list vlist);
 int _int(va_list vlist);
 int int_len(int x);
+int _binary(va_list vlist);
 #endif
