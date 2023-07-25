@@ -49,6 +49,11 @@ int _printf(const char *format, ...)
 				len += _binary(vlist);
 				i++;
 			}
+			else if (format[i + 1] == 'r')
+			{
+				len += rev_string(vlist);
+				i++;
+			}
 			else
 				len += _putchar('%');
 		}

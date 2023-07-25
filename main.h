@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <limits.h>
+#include <string.h>
 int _putchar(char c);
 int _printf(const char *format, ...);
 int _char(va_list vlist);
@@ -14,4 +15,5 @@ int _per(va_list vlist);
 int _int(va_list vlist);
 int int_len(int x);
 int _binary(va_list vlist);
+int rev_string(va_list vlist);
 #endif
