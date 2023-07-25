@@ -3,6 +3,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
+ * get_fun - return the function of the specifier
+ * @ch: the sepcifier
+ * Return: a function of NULL if not found
+ */
+int (*get_fun(char ch))(va_list vlist)
+{
+	int j = 0;
+
+	flag_t sps[] = {
+		{'c', _char}, {'s', _str}, {'%', _per},
+		{'d', _int}, {'i', _int}, {'b', _binary},
+		{'r', rev_string}, {'\0', NULL}
+	};
+
+		while (sps[j].f)
+		{
+			if (sps[j].sp == ch)
+			{
+				return (sps[j].f);
+			}
+			j++;
+		}
+		return (NULL);
+}
+/**
  * _printf - printf function.
  * @format:string to be printed.
  * Return:lenght of string.
@@ -10,13 +35,8 @@
  */
 int _printf(const char *format, ...)
 {
-	int i, len = 0, j = 0;
+	int i, len = 0;
 	va_list vlist;
-	flag_t sps[] = {
-		{'c', _char}, {'s', _str}, {'%', _per},
-		{'d', _int}, {'i', _int}, {'b', _binary},
-		{'r', rev_string}, {'\0', NULL}
-	};
 
 	if (!format)
 		return (-1);
@@ -29,18 +49,13 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] == '\0' || format[i + 1] == ' ')
 				return (-1);
-			while (sps[j].f)
-			{
-				if (sps[j].sp == format[i + 1])
-				{
-					len += sps[j].f(vlist);
-					i++;
-					break;
-				}
-				j++;
-			}
-			if (!sps[j].f)
+			if (!get_fun(format[i + 1]))
 				len += _putchar('%');
+			else
+			{
+				len += get_fun(format[i + 1])(vlist);
+				i++;
+			}
 		}
 	}
 	va_end(vlist);
