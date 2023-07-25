@@ -75,11 +75,10 @@ int _int(va_list vlist)
  */
 void int_binary(int x, int *len)
 {
-
-        if (x <= 0)
+	if (x <= 0)
 		return;
 	int_binary(x / 2, len);
-        _putchar('0' + (x % 2));
+	_putchar('0' + (x % 2));
 	(*len)++;
 }
 /**
@@ -89,9 +88,10 @@ void int_binary(int x, int *len)
  */
 int _binary(va_list vlist)
 {
-         int x, len = 0;
+	unsigned int x;
+	int len = 0;
 
-        x = va_arg(vlist, int);
+	x = va_arg(vlist, unsigned int);
 	if (x == 0 || x == 1)
 	{
 		_putchar('0' + x);
