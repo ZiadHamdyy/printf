@@ -35,7 +35,7 @@ int _int(va_list vlist)
     }
     if(x < 0)
     {
-        putchar('-');
+        _putchar('-');
         x *= -1;
 	f = 1;
     }
@@ -48,10 +48,10 @@ int _int(va_list vlist)
         x = x / 10;
     }
     for (i = i - 1; i >= 0; i--)
-     putchar(z[i] + '0');
+	    _putchar(z[i] + '0');
 	free(z);
 	if (f == 1)
-		return (len + 1);
+		return (len  +  1);
 	else
 		return (len);
 }
