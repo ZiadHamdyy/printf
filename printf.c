@@ -13,7 +13,6 @@ int _printf(const char *format, ...)
 	int i, len = 0;
 	va_list vlist;
 
-
 	if (!format)
 		return (-1);
 	va_start(vlist, format);
@@ -39,18 +38,14 @@ int _printf(const char *format, ...)
 				i++;
 			}
 			else if (format[i + 1] == '\0' || format[i + 1] == ' ')
-			{
 				return (-1);
-			}
 			else if (format[i + 1] == 'd' || format[i + 1] == 'i')
 			{
 				len += _int(vlist);
 				i++;
 			}
 			else
-			{
 				len += _putchar('%');
-			}
 		}
 	}
 	va_end(vlist);
