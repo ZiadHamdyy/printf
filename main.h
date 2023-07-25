@@ -7,6 +7,11 @@
 #include <fcntl.h>
 #include <limits.h>
 #include <string.h>
+typedef struct flag
+{
+	char sp;
+	int (*f)(va_list);
+} flag_t;
 int _putchar(char c);
 int _printf(const char *format, ...);
 int _char(va_list vlist);

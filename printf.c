@@ -10,8 +10,13 @@
  */
 int _printf(const char *format, ...)
 {
-	int i, len = 0;
+	int i, len = 0, j = 0;
 	va_list vlist;
+	flag_t sps[] = {
+		{'c', _char}, {'s', _str}, {'%', _per},
+		{'d', _int}, {'i', _int}, {'b', _binary},
+		{'r', rev_string}, {'\0', NULL}
+	};
 
 	if (!format)
 		return (-1);
@@ -22,39 +27,19 @@ int _printf(const char *format, ...)
 			len += _putchar(format[i]);
 		else
 		{
-			if (format[i + 1] == 'c')
-			{
-				len += _char(vlist);
-				i++;
-			}
-			else if (format[i + 1] == 's')
-			{
-				len += _str(vlist);
-				i++;
-			}
-			else if (format[i + 1] == '%')
-			{
-				len += _per(vlist);
-				i++;
-			}
-			else if (format[i + 1] == '\0' || format[i + 1] == ' ')
+			if (format[i + 1] == '\0' || format[i + 1] == ' ')
 				return (-1);
-			else if (format[i + 1] == 'd' || format[i + 1] == 'i')
+			while (sps[j].f)
 			{
-				len += _int(vlist);
-				i++;
+				if (sps[j].sp == format[i + 1])
+				{
+					len += sps[j].f(vlist);
+					i++;
+					break;
+				}
+				j++;
 			}
-			else if (format[i + 1] == 'b')
-			{
-				len += _binary(vlist);
-				i++;
-			}
-			else if (format[i + 1] == 'r')
-			{
-				len += rev_string(vlist);
-				i++;
-			}
-			else
+			if (!sps[j].f)
 				len += _putchar('%');
 		}
 	}
